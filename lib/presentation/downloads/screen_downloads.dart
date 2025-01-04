@@ -9,9 +9,9 @@ class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({super.key});
 
   final _widgetList = [
-    _SmartDownloads(),
+    const _SmartDownloads(),
     Section2(),
-    Section3(),
+    const Section3(),
   ];
 
   @override
@@ -25,9 +25,9 @@ class ScreenDownloads extends StatelessWidget {
           ),
         ),
         body: ListView.separated(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           itemBuilder: (ctx, index) => _widgetList[index],
-          separatorBuilder: (ctx, index) => SizedBox(
+          separatorBuilder: (ctx, index) => const SizedBox(
             height: 25,
           ),
           itemCount: _widgetList.length,
@@ -80,7 +80,7 @@ class Section2 extends StatelessWidget {
               ),
               DownloadsImageWidget(
                 imageList: imageList[2],
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   left: 170,
                 ),
                 angle: 26,
@@ -88,7 +88,7 @@ class Section2 extends StatelessWidget {
               ),
               DownloadsImageWidget(
                   imageList: imageList[1],
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     right: 170,
                   ),
                   angle: -21,
@@ -96,7 +96,7 @@ class Section2 extends StatelessWidget {
               DownloadsImageWidget(
                   radius: 10,
                   imageList: imageList[0],
-                  margin: EdgeInsets.only(bottom: 10),
+                  margin: const EdgeInsets.only(bottom: 10),
                   size: Size(size.width * 0.4, size.width * 0.6)),
             ],
           ),
@@ -121,9 +121,9 @@ class Section3 extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: const Text(
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(
                 "Set up",
                 style: TextStyle(
                   color: Colors.black,
@@ -141,9 +141,9 @@ class Section3 extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: const Text(
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Text(
               "See What You Can Download",
               style: TextStyle(
                 color: Colors.black,
@@ -163,7 +163,7 @@ class _SmartDownloads extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         Icon(
           Icons.settings,
