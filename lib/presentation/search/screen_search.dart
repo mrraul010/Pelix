@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pelix/presentation/search/widgets/search_idle.dart';
+import 'package:pelix/presentation/search/widgets/search_result.dart';
 
 class ScreenSearch extends StatelessWidget {
   const ScreenSearch({super.key});
@@ -29,7 +29,10 @@ class ScreenSearch extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Expanded(child: SearchIdle()),
+            // const Expanded(child: SearchIdle()),
+            const Expanded(
+              child: SearchResultWidget(),
+            ),
           ],
         ),
       )),
