@@ -17,7 +17,7 @@ class SearchIdle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Topsearchtitletext(
+        const Topsearchtitletext(
           title: 'Top Searches',
         ),
         const SizedBox(
@@ -54,10 +54,10 @@ class TopSearchItemTile extends StatelessWidget {
                 fit: BoxFit.cover),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
-        Expanded(
+        const Expanded(
           child: Text(
             "MOvie Name",
             style: TextStyle(
@@ -67,7 +67,7 @@ class TopSearchItemTile extends StatelessWidget {
             ),
           ),
         ),
-        Icon(
+        const Icon(
           CupertinoIcons.play_circle,
           color: Colors.white,
           size: 37,
