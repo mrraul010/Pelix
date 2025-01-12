@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pelix/core/colors/constants.dart';
 import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
+import 'package:pelix/presentation/widgets/video_widget.dart';
 
 import '../../../core/colors/colors.dart';
 
@@ -45,31 +46,7 @@ class ComingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  SizedBox(
-                      width: double.infinity,
-                      height: 200,
-                      child: CachedNetworkImage(
-                        imageUrl: newAndHotTempImage,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(
-                          strokeWidth: 2,
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      )),
-                  const Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: Icon(
-                      Icons.volume_off_outlined,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
+              VideoWidget(),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -4,6 +4,8 @@ import 'package:pelix/core/colors/colors.dart';
 import 'package:pelix/core/colors/constants.dart';
 import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:pelix/presentation/newandhot/widgets/comming_soon.dart';
+import 'package:pelix/presentation/newandhot/widgets/everyones_watching.dart';
+import 'package:pelix/presentation/widgets/video_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({super.key});
@@ -77,6 +79,9 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   Widget _buildEveryonesWatching() {
-    return Container();
+    return ListView.builder(
+        itemCount: 5,
+        itemBuilder: (BuildContext context, index) =>
+            EveryonesWatchingWidget());
   }
 }
