@@ -3,7 +3,7 @@ import 'package:pelix/core/colors/colors.dart';
 
 class VideoListItem extends StatelessWidget {
   final int index;
-  VideoListItem({
+  const VideoListItem({
     super.key,
     required this.index,
   });
@@ -28,11 +28,11 @@ class VideoListItem extends StatelessWidget {
                     radius: 26,
                     backgroundColor: Colors.black12,
                     child: IconButton(
-                        onPressed: () {}, icon: Icon(Icons.volume_off))),
+                        onPressed: () {}, icon: const Icon(Icons.volume_off))),
 
                 //Right Side
 
-                Column(
+                const Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
@@ -63,7 +63,8 @@ class VideoActionsWidget extends StatelessWidget {
   final IconData icon;
 
   final String title;
-  VideoActionsWidget({super.key, required this.icon, required this.title});
+  const VideoActionsWidget(
+      {super.key, required this.icon, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class VideoActionsWidget extends StatelessWidget {
           ),
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: kWhite,
               fontSize: 16,
             ),

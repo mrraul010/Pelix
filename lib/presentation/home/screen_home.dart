@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pelix/core/colors/colors.dart';
 import 'package:pelix/core/colors/constants.dart';
 import 'package:pelix/presentation/home/widgets/background_card.dart';
-import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
-import 'package:pelix/presentation/home/widgets/number_card.dart';
 import 'package:pelix/presentation/home/widgets/number_widget.dart';
-import 'package:pelix/presentation/widgets/main_card.dart';
-import 'package:pelix/presentation/widgets/main_title.dart';
 import 'package:pelix/presentation/widgets/main_titleCaard.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
@@ -58,7 +53,7 @@ class Screenhome extends StatelessWidget {
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
-                      duration: Duration(milliseconds: 1500),
+                      duration: const Duration(milliseconds: 1500),
                       width: double.infinity,
                       height: 90,
                       color: Colors.black.withOpacity(0.6),

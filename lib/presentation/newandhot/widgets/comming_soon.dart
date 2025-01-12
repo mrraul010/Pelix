@@ -1,0 +1,127 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
+
+import '../../../core/colors/colors.dart';
+
+class ComingSoonWidget extends StatelessWidget {
+  const ComingSoonWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Row(
+      children: [
+        const SizedBox(
+          width: 70,
+          height: 450,
+          child: Column(
+            children: [
+              Text(
+                'JAN',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: kGreyColor,
+                ),
+              ),
+              Text(
+                '11',
+                style: TextStyle(
+                  fontSize: 30,
+                  letterSpacing: 4,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: size.width - 70,
+          height: 450,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  SizedBox(
+                      width: double.infinity,
+                      height: 200,
+                      child: CachedNetworkImage(
+                        imageUrl: newAndHotTempImage,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      )),
+                  const Positioned(
+                    bottom: 10,
+                    right: 10,
+                    child: Icon(
+                      Icons.volume_off_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Constantine",
+                    style: TextStyle(
+                      fontSize: 28,
+                      letterSpacing: -2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      CustomButtonWidget(
+                        icon: Icons.alarm,
+                        title: 'Remind me',
+                        iconsize: 20,
+                        textsize: 15,
+                      ),
+                      kWidth,
+                      CustomButtonWidget(
+                        icon: Icons.info,
+                        title: 'Info',
+                        iconsize: 20,
+                        textsize: 15,
+                      ),
+                      kWidth,
+                    ],
+                  )
+                ],
+              ),
+              kHeight,
+              const Text("Coming on Friday"),
+              kHeight,
+              const Text(
+                "Constantine",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              kHeight,
+              Text(
+                "A man struggling with his faith is haunted by the sins of his past but is suddenly thrust into the role of defending humanity from the gathering forces of darkness.",
+                style: TextStyle(
+                  color: kGreyColor,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
