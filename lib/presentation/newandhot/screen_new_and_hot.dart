@@ -1,11 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pelix/core/colors/colors.dart';
 import 'package:pelix/core/colors/constants.dart';
-import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:pelix/presentation/newandhot/widgets/comming_soon.dart';
 import 'package:pelix/presentation/newandhot/widgets/everyones_watching.dart';
-import 'package:pelix/presentation/widgets/video_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({super.key});
@@ -75,13 +72,13 @@ class ScreenNewAndHot extends StatelessWidget {
   Widget _buildComingSoon() {
     return ListView.builder(
         itemCount: 5,
-        itemBuilder: (BuildContext context, index) => ComingSoonWidget());
+        itemBuilder: (BuildContext context, index) => const ComingSoonWidget());
   }
 
   Widget _buildEveryonesWatching() {
     return ListView.builder(
         itemCount: 5,
         itemBuilder: (BuildContext context, index) =>
-            EveryonesWatchingWidget());
+            const EveryonesWatchingWidget());
   }
 }

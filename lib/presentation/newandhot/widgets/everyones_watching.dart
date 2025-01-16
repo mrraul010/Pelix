@@ -11,7 +11,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
@@ -61,3 +61,5 @@ class EveryonesWatchingWidget extends StatelessWidget {
     );
   }
 }
+
+//part 43 started
