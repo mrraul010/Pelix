@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pelix/core/colors/constants.dart';
 import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
@@ -43,11 +42,11 @@ class ComingSoonWidget extends StatelessWidget {
         SizedBox(
           width: size.width - 70,
           height: 450,
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               VideoWidget(),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -79,9 +78,9 @@ class ComingSoonWidget extends StatelessWidget {
                 ],
               ),
               kHeight,
-              const Text("Coming on Friday"),
+              Text("Coming on Friday"),
               kHeight,
-              const Text(
+              Text(
                 "Constantine",
                 style: TextStyle(
                   fontSize: 18,
