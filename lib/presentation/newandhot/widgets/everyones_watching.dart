@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pelix/core/colors/colors.dart';
-import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/core/colors.dart';
+import 'package:pelix/core/constants.dart';
 import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:pelix/presentation/widgets/video_widget.dart';
 
@@ -61,5 +61,3 @@ class EveryonesWatchingWidget extends StatelessWidget {
     );
   }
 }
-
-//part 43 started

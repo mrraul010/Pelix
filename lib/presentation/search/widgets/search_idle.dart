@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pelix/core/colors/colors.dart';
-import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/core/colors.dart';
+
+import 'package:pelix/core/constants.dart';
 import 'package:pelix/presentation/search/widgets/title.dart';
 
 const imageUrl =

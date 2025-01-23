@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/core/constants.dart';
 
 class MainCard extends StatelessWidget {
   const MainCard({

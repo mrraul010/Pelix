@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/core/constants.dart';
 import 'package:pelix/presentation/home/widgets/background_card.dart';
 import 'package:pelix/presentation/home/widgets/number_widget.dart';
 import 'package:pelix/presentation/widgets/main_titleCaard.dart';

@@ -1,6 +1,6 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
-import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/core/constants.dart';
 
 class NumberCard extends StatelessWidget {
   const NumberCard({super.key, required this.index});

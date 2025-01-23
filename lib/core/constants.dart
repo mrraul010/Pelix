@@ -34,3 +34,5 @@ const newAndHotTempImage =
 
 const newAndHotTempImage2 =
     "https://media.themoviedb.org/t/p/w533_and_h300_bestv2/l0qVZIpXtIo7km9u5Yqh0nKPOr5.jpg";
+
+const imageAppendUrl = 'https://image.tmdb.org/t/p/w500/';

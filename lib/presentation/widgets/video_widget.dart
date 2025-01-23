@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/core/constants.dart';
 
 class VideoWidget extends StatelessWidget {
   const VideoWidget({

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pelix/core/colors/colors.dart';
-import 'package:pelix/core/colors/constants.dart';
+import 'package:pelix/core/colors.dart';
+
+import 'package:pelix/core/constants.dart';
 import 'package:pelix/presentation/newandhot/widgets/comming_soon.dart';
 import 'package:pelix/presentation/newandhot/widgets/everyones_watching.dart';
 
