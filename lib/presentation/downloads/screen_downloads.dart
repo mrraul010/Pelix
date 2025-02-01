@@ -13,7 +13,7 @@ class ScreenDownloads extends StatelessWidget {
 
   final _widgetList = [
     const _SmartDownloads(),
-    Section2(),
+    const Section2(),
     const Section3(),
   ];
 
@@ -39,16 +39,14 @@ class ScreenDownloads extends StatelessWidget {
 }
 
 class Section2 extends StatelessWidget {
-  Section2({super.key});
+  const Section2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance!.addPostFrameCallback((_) {
-    //   BlocProvider.of<DownloadsBloc>(context)
-    //       .add(DownloadsEvent.getDownloadsImages());
-    // });
-    BlocProvider.of<DownloadsBloc>(context)
-        .add(DownloadsEvent.getDownloadsImages());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context)
+          .add(const DownloadsEvent.getDownloadsImages());
+    });
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -74,10 +72,13 @@ class Section2 extends StatelessWidget {
         BlocBuilder<DownloadsBloc, DownloadsState>(
           builder: (context, state) {
             if (state.isloading) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(
+                  child: CircularProgressIndicator(
+                color: kButtonColorOrange,
+              ));
             }
             if (state.downloads.isEmpty) {
-              return Center(child: Text('No Downloads Available'));
+              return const Center(child: Text('No Downloads Available'));
             }
             return SizedBox(
               width: size.width,
@@ -229,3 +230,5 @@ class DownloadsImageWidget extends StatelessWidget {
     );
   }
 }
+
+//part 47 08:00

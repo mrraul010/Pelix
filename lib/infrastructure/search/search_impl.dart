@@ -5,23 +5,24 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pelix/domain/core/api_end_points.dart';
 import 'package:pelix/domain/core/failures/main_failure.dart';
-import 'package:pelix/domain/downloads/i_downloads_repo.dart';
-import 'package:pelix/domain/downloads/models/downloads.dart';
+import 'package:pelix/domain/search/model/search_resp/search_resp.dart';
+import 'package:pelix/domain/search/search_service.dart';
 
-@LazySingleton(as: IDownloadsRepo)
-class DownloadsRepository implements IDownloadsRepo {
+@LazySingleton(as: SearchService)
+class SearchImpl implements SearchService {
   @override
-  Future<Either<MainFailure, List<Downloads>>> getDownloadsImages() async {
+  Future<Either<MainFailure, SearchResp>> searchMovies(
+      {required String movieQuery}) async {
     try {
       final Response response =
-          await Dio(BaseOptions()).get(ApiEndPoints.downloads);
+          await Dio(BaseOptions()).get(ApiEndPoints.search, queryParameters: {
+        'query': movieQuery,
+      });
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final downloadsList = (response.data['results'] as List).map((e) {
-          return Downloads.fromJson(e);
-        }).toList();
-        print(downloadsList);
-        return Right(downloadsList);
+        final result = SearchResp.fromJson(response.data);
+
+        return Right(result);
       } else {
         return const Left(MainFailure.serverFailure());
       }

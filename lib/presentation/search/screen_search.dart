@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pelix/application/search/search_bloc.dart';
+import 'package:pelix/presentation/search/widgets/search_idle.dart';
 import 'package:pelix/presentation/search/widgets/search_result.dart';
 
 class ScreenSearch extends StatelessWidget {
@@ -7,6 +10,11 @@ class ScreenSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        BlocProvider.of<SearchBloc>(context).add(const Initialize());
+      },
+    );
     return Scaffold(
       body: SafeArea(
           child: Padding(
@@ -29,10 +37,10 @@ class ScreenSearch extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            // const Expanded(child: SearchIdle()),
-            const Expanded(
-              child: SearchResultWidget(),
-            ),
+            const Expanded(child: SearchIdle()),
+            // const Expanded(
+            //   child: SearchResultWidget(),
+            // ),
           ],
         ),
       )),
