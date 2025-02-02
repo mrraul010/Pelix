@@ -9,7 +9,7 @@ class SearchState with _$SearchState {
     required bool isError,
   }) = _SearchState;
 
-  factory SearchState.initial() => SearchState(
+  factory SearchState.initial() => const SearchState(
         searchResults: [],
         idleList: [],
         isLoading: false,

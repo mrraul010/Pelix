@@ -13,7 +13,7 @@ class ScreenMainPage extends StatelessWidget {
     const Screenhome(),
     const ScreenNewAndHot(),
     const ScreenFastLaugh(),
-    const ScreenSearch(),
+    ScreenSearch(),
     ScreenDownloads(),
   ];
   @override

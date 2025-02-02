@@ -7,7 +7,6 @@ import 'package:pelix/core/colors.dart';
 import 'package:pelix/domain/core/di/injectable.dart';
 import 'package:pelix/presentation/downloads/screen_downloads.dart';
 
-import 'package:pelix/presentation/mainpage/screen_main_page.dart';
 import 'package:pelix/presentation/splash_screen.dart';
 
 Future<void> main() async {
@@ -44,10 +43,7 @@ class MyApp extends StatelessWidget {
                 .copyWith(surface: backgroundColor),
           ),
           debugShowCheckedModeBanner: false,
-          home: SplashScreen()),
+          home: const SplashScreen()),
     );
   }
 }
-
-
-//part 47 27:30

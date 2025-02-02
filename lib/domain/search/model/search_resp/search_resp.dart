@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:pelix/core/constants.dart';
 
 part 'search_resp.g.dart';
 

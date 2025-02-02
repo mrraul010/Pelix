@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pelix/application/search/search_bloc.dart';
 import 'package:pelix/core/constants.dart';
 import 'package:pelix/presentation/search/widgets/title.dart';
 
-const imageurl =
-    'https://image.tmdb.org/t/p/w600_and_h900_bestv2/zorlLz9vGTMilsJMr8XqeaxKZ08.jpg';
-
 class SearchResultWidget extends StatelessWidget {
-  const SearchResultWidget({super.key});
+  const SearchResultWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +16,20 @@ class SearchResultWidget extends StatelessWidget {
       children: [
         const Topsearchtitletext(title: 'Movies and TV'),
         kHeight,
-        Expanded(
-            child: GridView.count(
-          shrinkWrap: true,
-          crossAxisSpacing: 9,
-          mainAxisSpacing: 9,
-          crossAxisCount: 3,
-          childAspectRatio: 1 / 1.7,
-          children: List.generate(20, (index) {
-            return const MainCard();
-          }),
+        Expanded(child: BlocBuilder<SearchBloc, SearchState>(
+          builder: (context, state) {
+            return GridView.count(
+              shrinkWrap: true,
+              crossAxisSpacing: 9,
+              mainAxisSpacing: 9,
+              crossAxisCount: 3,
+              childAspectRatio: 1 / 1.7,
+              children: List.generate(state.searchResults.length, (index) {
+                final movie = state.searchResults[index];
+                return MainCard(imageUrl: '$imageAppendUrl${movie.posterPath}');
+              }),
+            );
+          },
         ))
       ],
     );
@@ -32,14 +37,15 @@ class SearchResultWidget extends StatelessWidget {
 }
 
 class MainCard extends StatelessWidget {
-  const MainCard({super.key});
+  final String imageUrl;
+  const MainCard({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: NetworkImage(imageurl),
+          image: DecorationImage(
+            image: NetworkImage(imageUrl),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(8)),

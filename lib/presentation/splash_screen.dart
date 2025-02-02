@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pelix/presentation/mainpage/screen_main_page.dart';
 
@@ -14,7 +13,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => ScreenMainPage()));
     });
@@ -23,11 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff12111F),
+      backgroundColor: const Color(0xff12111F),
       body: Center(
         child: Image.asset(
           'assets/pelixlogo.png',
-          scale: 1.2,
+          scale: 1.4,
         ),
       ),
     );

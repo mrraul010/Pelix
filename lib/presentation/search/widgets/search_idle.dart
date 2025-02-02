@@ -5,7 +5,6 @@ import 'package:pelix/application/search/search_bloc.dart';
 import 'package:pelix/core/colors.dart';
 
 import 'package:pelix/core/constants.dart';
-import 'package:pelix/presentation/search/widgets/search_result.dart';
 import 'package:pelix/presentation/search/widgets/title.dart';
 
 class SearchIdle extends StatelessWidget {
@@ -63,7 +62,8 @@ class SearchIdle extends StatelessWidget {
 class TopSearchItemTile extends StatelessWidget {
   final String title;
   final String imagoUrl;
-  TopSearchItemTile({super.key, required this.title, required this.imagoUrl});
+  const TopSearchItemTile(
+      {super.key, required this.title, required this.imagoUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class TopSearchItemTile extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: kWhite,
               fontWeight: FontWeight.bold,
               fontSize: 16,

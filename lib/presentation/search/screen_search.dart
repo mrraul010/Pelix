@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pelix/application/search/search_bloc.dart';
+import 'package:pelix/domain/core/debounce/debounce.dart';
 import 'package:pelix/presentation/search/widgets/search_idle.dart';
 import 'package:pelix/presentation/search/widgets/search_result.dart';
 
 class ScreenSearch extends StatelessWidget {
-  const ScreenSearch({super.key});
+  ScreenSearch({super.key});
+
+  final _debouncer = Debouncer(milliseconds: 1 * 1000);
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +36,30 @@ class ScreenSearch extends StatelessWidget {
                 color: Colors.grey,
               ),
               style: const TextStyle(color: Colors.white),
+              onChanged: (value) {
+                _debouncer.run(() {
+                  if (value.isEmpty) {
+                    return;
+                  }
+                  BlocProvider.of<SearchBloc>(context)
+                      .add(SearchMovie(MovieQuery: value));
+                });
+              },
             ),
             const SizedBox(
               height: 20,
             ),
-            const Expanded(child: SearchIdle()),
-            // const Expanded(
-            //   child: SearchResultWidget(),
-            // ),
+            Expanded(
+              child: BlocBuilder<SearchBloc, SearchState>(
+                builder: (context, state) {
+                  if (state.searchResults.isEmpty) {
+                    return const SearchIdle();
+                  } else {
+                    return const SearchResultWidget();
+                  }
+                },
+              ),
+            ),
           ],
         ),
       )),
