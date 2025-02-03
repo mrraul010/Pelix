@@ -20,7 +20,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   SearchBloc(this._downloadsService, this._searchService)
       : super(SearchState.initial()) {
-    /* 
+    /*
     IDLE STATE
      */
     on<Initialize>((event, emit) async {
