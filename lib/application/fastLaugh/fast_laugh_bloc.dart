@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pelix/domain/downloads/i_downloads_repo.dart';
@@ -22,6 +23,9 @@ final dummyVideoUrls = [
   "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
 ];
 
+ValueNotifier<Set<int>> likedVideosNotifier = ValueNotifier({});
+ValueNotifier<Set<int>> mylistaddNotifier = ValueNotifier({});
+
 @injectable
 class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
   FastLaughBloc(
@@ -30,20 +34,49 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
     on<Initialize>((event, emit) async {
       //sending loading to ui
       emit(const FastLaughState(
-          videosList: [], isLoading: true, isError: false));
+        videosList: [],
+        isLoading: true,
+        isError: false,
+      ));
 
       // get trending
       final result = await downloadService.getDownloadsImages();
 
       final state = result.fold((l) {
         return const FastLaughState(
-            videosList: [], isLoading: false, isError: true);
+          videosList: [],
+          isLoading: false,
+          isError: true,
+        );
       },
           (resp) => FastLaughState(
-              videosList: resp, isLoading: false, isError: false));
+                videosList: resp,
+                isLoading: false,
+                isError: false,
+              ));
       //send to ui
 
       emit(state);
+    });
+
+    on<LikeVideo>((event, emit) async {
+      likedVideosNotifier.value.add(event.id);
+      likedVideosNotifier.notifyListeners();
+    });
+
+    on<UnlikeVideo>((event, emit) async {
+      likedVideosNotifier.value.remove(event.id);
+      likedVideosNotifier.notifyListeners();
+    });
+
+    on<AddToMyList>((event, emit) async {
+      mylistaddNotifier.value.add(event.id);
+      mylistaddNotifier.notifyListeners();
+    });
+
+    on<removeFromMyList>((event, emit) async {
+      mylistaddNotifier.value.remove(event.id);
+      mylistaddNotifier.notifyListeners();
     });
   }
 }

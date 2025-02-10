@@ -1,17 +1,21 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pelix/application/fastLaugh/fast_laugh_bloc.dart';
 import 'package:pelix/core/colors.dart';
 import 'package:pelix/core/constants.dart';
 import 'package:pelix/domain/downloads/models/downloads.dart';
 import 'package:video_player/video_player.dart';
+import 'package:share_plus/share_plus.dart';
 
 class VideoListItemInheritedWidget extends InheritedWidget {
   final Widget widget;
   final Downloads moviedata;
 
   const VideoListItemInheritedWidget(
-      {Key? key, required this.widget, required this.moviedata})
-      : super(child: widget, key: key);
+      {super.key, required this.widget, required this.moviedata})
+      : super(child: widget);
   @override
   bool updateShouldNotify(covariant VideoListItemInheritedWidget oldWidget) {
     return oldWidget.moviedata != moviedata;
@@ -69,11 +73,96 @@ class VideoListItem extends StatelessWidget {
                             : NetworkImage('$imageAppendUrl$posterPath'),
                       ),
                     ),
-                    VideoActionsWidget(
-                        icon: Icons.emoji_emotions, title: 'Lol'),
-                    VideoActionsWidget(icon: Icons.add, title: 'MY list'),
-                    VideoActionsWidget(icon: Icons.share, title: 'Share'),
-                    VideoActionsWidget(icon: Icons.play_arrow, title: 'Play')
+                    ValueListenableBuilder(
+                      valueListenable: likedVideosNotifier,
+                      builder: (BuildContext c, Set<int> newLikedListIds,
+                          Widget? _) {
+                        final _index = index;
+                        if (newLikedListIds.contains(_index)) {
+                          return GestureDetector(
+                            onTap: () {
+                              // BlocProvider.of<FastLaughBloc>(context)
+                              //     .add(UnlikeVideo(id: _index));
+
+                              likedVideosNotifier.value.remove(_index);
+                              likedVideosNotifier.notifyListeners();
+                            },
+                            child: const VideoActionsWidget(
+                              icon: Icons.favorite,
+                              title: 'Liked',
+                              color: Colors.pinkAccent,
+                            ),
+                          );
+                        }
+                        return GestureDetector(
+                          onTap: () {
+                            // BlocProvider.of<FastLaughBloc>(context)
+                            //     .add(LikeVideo(id: _index));
+
+                            likedVideosNotifier.value.add(_index);
+                            likedVideosNotifier.notifyListeners();
+                          },
+                          child: const VideoActionsWidget(
+                            icon: Icons.emoji_emotions,
+                            title: 'Lol',
+                            color: Colors.white,
+                          ),
+                        );
+                      },
+                    ),
+                    ValueListenableBuilder(
+                      valueListenable: mylistaddNotifier,
+                      builder:
+                          (BuildContext c, Set<int> newMylistIds, Widget? _) {
+                        final _index = index;
+                        if (newMylistIds.contains(_index)) {
+                          return GestureDetector(
+                            onTap: () {
+                              mylistaddNotifier.value.remove(_index);
+                              mylistaddNotifier.notifyListeners();
+                            },
+                            child: VideoActionsWidget(
+                              icon: Icons.check,
+                              title: 'Added',
+                              color: Colors.white,
+                            ),
+                          );
+                        }
+                        return GestureDetector(
+                          onTap: () {
+                            mylistaddNotifier.value.add(_index);
+                            mylistaddNotifier.notifyListeners();
+                          },
+                          child: VideoActionsWidget(
+                            icon: Icons.add,
+                            title: 'MY list',
+                            color: Colors.white,
+                          ),
+                        );
+                      },
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          final movieName =
+                              VideoListItemInheritedWidget.of(context)
+                                  ?.moviedata
+                                  .title;
+
+                          if (movieName != null) {
+                            log(movieName.toString());
+                            Share.share(movieName);
+                          }
+                        },
+                        child: const VideoActionsWidget(
+                          icon: Icons.share,
+                          title: 'Share',
+                          color: Colors.white,
+                        )),
+                    const VideoActionsWidget(
+                      icon: Icons.play_arrow,
+                      title: 'Play',
+                      color: Colors.white,
+                    )
                   ],
                 ),
               ],
@@ -87,10 +176,14 @@ class VideoListItem extends StatelessWidget {
 
 class VideoActionsWidget extends StatelessWidget {
   final IconData icon;
+  final Color color;
 
   final String title;
   const VideoActionsWidget(
-      {super.key, required this.icon, required this.title});
+      {super.key,
+      required this.icon,
+      required this.title,
+      required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +193,7 @@ class VideoActionsWidget extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: Colors.white,
+            color: color,
             size: 30,
           ),
           Text(
