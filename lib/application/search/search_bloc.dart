@@ -38,7 +38,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       // get trending
       final result = await _downloadsService.getDownloadsImages();
-      final _state = result.fold((MainFailure f) {
+      final state = result.fold((MainFailure f) {
         return const SearchState(
             searchResults: [], idleList: [], isLoading: false, isError: true);
       }, (List<Downloads> list) {
@@ -49,7 +49,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
             isError: false);
       });
       // show to ui
-      emit(_state);
+      emit(state);
     });
 
 /* 

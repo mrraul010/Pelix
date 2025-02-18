@@ -77,14 +77,14 @@ class VideoListItem extends StatelessWidget {
                       valueListenable: likedVideosNotifier,
                       builder: (BuildContext c, Set<int> newLikedListIds,
                           Widget? _) {
-                        final _index = index;
-                        if (newLikedListIds.contains(_index)) {
+                        final index = index;
+                        if (newLikedListIds.contains(index)) {
                           return GestureDetector(
                             onTap: () {
                               // BlocProvider.of<FastLaughBloc>(context)
                               //     .add(UnlikeVideo(id: _index));
 
-                              likedVideosNotifier.value.remove(_index);
+                              likedVideosNotifier.value.remove(index);
                               likedVideosNotifier.notifyListeners();
                             },
                             child: const VideoActionsWidget(
@@ -99,7 +99,7 @@ class VideoListItem extends StatelessWidget {
                             // BlocProvider.of<FastLaughBloc>(context)
                             //     .add(LikeVideo(id: _index));
 
-                            likedVideosNotifier.value.add(_index);
+                            likedVideosNotifier.value.add(index);
                             likedVideosNotifier.notifyListeners();
                           },
                           child: const VideoActionsWidget(
@@ -114,14 +114,14 @@ class VideoListItem extends StatelessWidget {
                       valueListenable: mylistaddNotifier,
                       builder:
                           (BuildContext c, Set<int> newMylistIds, Widget? _) {
-                        final _index = index;
-                        if (newMylistIds.contains(_index)) {
+                        final index = index;
+                        if (newMylistIds.contains(index)) {
                           return GestureDetector(
                             onTap: () {
-                              mylistaddNotifier.value.remove(_index);
+                              mylistaddNotifier.value.remove(index);
                               mylistaddNotifier.notifyListeners();
                             },
-                            child: VideoActionsWidget(
+                            child: const VideoActionsWidget(
                               icon: Icons.check,
                               title: 'Added',
                               color: Colors.white,
@@ -130,10 +130,10 @@ class VideoListItem extends StatelessWidget {
                         }
                         return GestureDetector(
                           onTap: () {
-                            mylistaddNotifier.value.add(_index);
+                            mylistaddNotifier.value.add(index);
                             mylistaddNotifier.notifyListeners();
                           },
-                          child: VideoActionsWidget(
+                          child: const VideoActionsWidget(
                             icon: Icons.add,
                             title: 'MY list',
                             color: Colors.white,
@@ -258,3 +258,5 @@ class _FastLaughVideoPlayerState extends State<FastLaughVideoPlayer> {
     super.dispose();
   }
 }
+
+//Part 52 5:00
