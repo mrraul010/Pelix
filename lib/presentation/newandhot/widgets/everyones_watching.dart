@@ -5,32 +5,43 @@ import 'package:pelix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:pelix/presentation/widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
-  const EveryonesWatchingWidget({
+  final String posterPath;
+  final String movieName;
+  final String description;
+
+  EveryonesWatchingWidget({
     super.key,
+    required this.posterPath,
+    required this.movieName,
+    required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
         Text(
-          "Friends",
-          style: TextStyle(
+          movieName,
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
         kHeight,
         Text(
-          "Six young people from New York City, on their own and struggling to survive in the real world, find the companionship, comfort and support they get from each other to be the perfect antidote to the pressures of life",
-          style: TextStyle(
+          description,
+          maxLines: 4,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
             color: kGreyColor,
           ),
         ),
         kHeight50,
-        VideoWidget(),
+        VideoWidget(
+          url: posterPath,
+        ),
         kHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

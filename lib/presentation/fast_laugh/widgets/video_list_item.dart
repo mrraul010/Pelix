@@ -77,7 +77,7 @@ class VideoListItem extends StatelessWidget {
                       valueListenable: likedVideosNotifier,
                       builder: (BuildContext c, Set<int> newLikedListIds,
                           Widget? _) {
-                        final index = index;
+                        final _index = index;
                         if (newLikedListIds.contains(index)) {
                           return GestureDetector(
                             onTap: () {
@@ -114,7 +114,7 @@ class VideoListItem extends StatelessWidget {
                       valueListenable: mylistaddNotifier,
                       builder:
                           (BuildContext c, Set<int> newMylistIds, Widget? _) {
-                        final index = index;
+                        final _index = index;
                         if (newMylistIds.contains(index)) {
                           return GestureDetector(
                             onTap: () {
