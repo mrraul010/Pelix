@@ -48,5 +48,30 @@ How to Run 🚀
 
 Clone the repository:
 
+ git clone https://github.com/mrraul010/Pelix.git
 
+
+ Install dependencies:
+ 
+ flutter pub get
+
+run the App
+
+flutter run
+
+API Configuration 🔑
+
+Create an account at TMDB
+
+Generate your API key
+
+Add your API key to the url get request as last of tmdb api
+
+Contributing 🤝
+
+Feel free to fork this repository and submit pull requests!
+
+Let's build something amazing together.
+
+Made with ❤️ by P Rahul Raj
 
