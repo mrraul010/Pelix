@@ -6,7 +6,10 @@ import 'package:pelix/presentation/widgets/main_title.dart';
 class NumberWidget extends StatelessWidget {
   const NumberWidget({
     super.key,
+    required this.postersList,
   });
+
+  final List<String> postersList;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +25,10 @@ class NumberWidget extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
-                10,
+                postersList.length,
                 (index) => NumberCard(
                       index: index,
+                      imageUrl: postersList[index],
                     )),
           ),
         )

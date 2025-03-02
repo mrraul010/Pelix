@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pelix/application/home/home_bloc.dart';
+import 'package:pelix/core/colors.dart';
 import 'package:pelix/core/constants.dart';
 import 'package:pelix/presentation/home/widgets/background_card.dart';
 import 'package:pelix/presentation/home/widgets/number_widget.dart';
@@ -12,6 +15,9 @@ class Screenhome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
+      BlocProvider.of<HomeBloc>(context).add(GetHomeScreenData());
+    });
     return Scaffold(
         body: ValueListenableBuilder(
       valueListenable: scrollNotifier,
@@ -29,27 +35,78 @@ class Screenhome extends StatelessWidget {
           },
           child: Stack(
             children: [
-              ListView(
-                children: const [
-                  BackgroundCard(),
-                  MainTitleCaard(
-                    title: "Released in the past year",
-                  ),
-                  kHeight20,
-                  MainTitleCaard(
-                    title: "Trending Now",
-                  ),
-                  kHeight20,
-                  NumberWidget(),
-                  kHeight,
-                  MainTitleCaard(
-                    title: "Tense Dramas",
-                  ),
-                  kHeight20,
-                  MainTitleCaard(
-                    title: "South Indian Cinema",
-                  ),
-                ],
+              BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  if (state.isLoading) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 6,
+                        color: kButtonColorOrange,
+                      ),
+                    );
+                  }
+                  if (state.hasError) {
+                    return Center(
+                      child: Text(
+                        'Error while getting  data',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    );
+                  }
+
+                  final _releasepastyear = state.pastyearMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _releasepastyear.shuffle();
+
+                  final _trendingmovies = state.trendingMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _trendingmovies.shuffle();
+
+                  final _tensedramas = state.tenseDramasMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _tensedramas.shuffle();
+
+                  final _global = state.globalMovieList.map((m) {
+                    return '$imageAppendUrl${m.posterPath}';
+                  }).toList();
+                  _global.shuffle();
+
+                  final top10tvshowsli = state.topratedtvlist.map((t) {
+                    return '$imageAppendUrl${t.posterPath}';
+                  }).toList();
+                  print(top10tvshowsli.length);
+                  return ListView(
+                    children: [
+                      BackgroundCard(),
+                      MainTitleCaard(
+                        title: "EverTime Classics",
+                        posterList: _releasepastyear.take(10).toList(),
+                      ),
+                      kHeight20,
+                      MainTitleCaard(
+                        title: "Trending Now",
+                        posterList: _trendingmovies.take(10).toList(),
+                      ),
+                      kHeight20,
+                      kHeight,
+                      NumberWidget(
+                        postersList: top10tvshowsli.take(10).toList(),
+                      ),
+                      MainTitleCaard(
+                        title: "Tense Dramas",
+                        posterList: _tensedramas.take(10).toList(),
+                      ),
+                      kHeight20,
+                      MainTitleCaard(
+                        title: "GlobalCinema",
+                        posterList: _global.take(10).toList(),
+                      ),
+                    ],
+                  );
+                },
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
@@ -114,3 +171,6 @@ class Screenhome extends StatelessWidget {
     ));
   }
 }
+
+
+//created by P Rahul Raj

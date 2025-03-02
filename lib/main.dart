@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pelix/application/downloads/downloads_bloc.dart';
 import 'package:pelix/application/fastLaugh/fast_laugh_bloc.dart';
+import 'package:pelix/application/home/home_bloc.dart';
 import 'package:pelix/application/hot_and_new/hot_and_new_bloc.dart';
 import 'package:pelix/application/search/search_bloc.dart';
 import 'package:pelix/core/colors.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (ctx) => getIt<SearchBloc>()),
         BlocProvider(create: (ctx) => getIt<FastLaughBloc>()),
         BlocProvider(create: (ctx) => getIt<HotAndNewBloc>()),
+        BlocProvider(create: (ctx) => getIt<HomeBloc>()),
       ],
       child: MaterialApp(
           title: 'Pelix',
@@ -52,6 +54,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
-//part 53 15:27
+// created onlytoprated movie service  rest crate for your wish and work on
