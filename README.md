@@ -31,3 +31,22 @@ GetIt (Dependency Injection)
 Freezed (Code Generation)
 
 Domain Driven Design
+
+Folder Structure 📁
+
+lib/
+│
+├─ application/        # Business Logic (BLoC)
+├─ core/              # Constants, Themes, Utilities
+├─ domain/            # Entities, Use Cases, Repositories
+├─ infrastructure/     # Data Layer, API Calls
+└─ presentation/      # UI Layer (Screens, Widgets)
+
+
+
+How to Run 🚀
+
+Clone the repository:
+
+
+
